@@ -1,0 +1,23 @@
+{
+  "name": "Flask-Dance with Slack",
+  "description": "Testing Flask-Dance's OAuth integration with Slack",
+  "keywords": [
+    "oauth"
+  ],
+  "website": "https://github.com/singingwolfboy/flask-dance-slack",
+  "repository": "https://github.com/singingwolfboy/flask-dance-slack",
+  "env": {
+    "FLASK_SECRET_KEY": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "SLACK_OAUTH_CLIENT_ID": {
+      "description": "The OAuth client ID for your application, assigned by Slack",
+      "value": "client-id-goes-here"
+    },
+    "SLACK_OAUTH_CLIENT_SECRET": {
+      "description": "The OAuth client secret for your application, assigned by Slack",
+      "value": "client-secret-goes-here"
+    }
+  }
+}
