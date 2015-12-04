@@ -14,7 +14,7 @@ slack_bp = OAuth2ConsumerBlueprint("slack", __name__,
     base_url="https://slack.com/api/",
     authorization_url="https://slack.com/oauth/authorize",
     token_url="https://slack.com/api/oauth.access",
-    scope=["chat:write:bot"],
+    scope=["identify", "chat:write:bot"],
 )
 slack_bp.from_config["client_id"] = "SLACK_OAUTH_CLIENT_ID"
 slack_bp.from_config["client_secret"] = "SLACK_OAUTH_CLIENT_SECRET"
