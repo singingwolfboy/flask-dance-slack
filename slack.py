@@ -1,4 +1,5 @@
 import os
+import sys
 from werkzeug.contrib.fixers import ProxyFix
 from flask import Flask, redirect, url_for
 from flask_dance.consumer import OAuth2ConsumerBlueprint
@@ -26,6 +27,7 @@ slack = slack_bp.session
 
 @app.route("/")
 def index():
+    print(app.config, file=sys.stderr)
     if not slack.authorized:
         return redirect(url_for("slack.login"))
     resp = slack.post("chat.postMessage", data={
