@@ -27,7 +27,7 @@ slack = slack_bp.session
 
 @app.route("/")
 def index():
-    # print(app.config, file=sys.stderr)
+    print(app.config, file=sys.stderr)
     if not slack.authorized:
         return redirect(url_for("slack.login"))
     resp = slack.post("chat.postMessage", data={
