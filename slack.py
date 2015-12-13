@@ -2,6 +2,7 @@ import os
 import sys
 import logging
 from werkzeug.contrib.fixers import ProxyFix
+import flask
 from flask import Flask, redirect, url_for
 from flask_dance.consumer import OAuth2ConsumerBlueprint
 from raven.contrib.flask import Sentry
@@ -9,6 +10,7 @@ from raven.contrib.flask import Sentry
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 sentry = Sentry(app)
+logging.setLevel(loggin.INFO)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "supersekrit")
 app.config["SLACK_OAUTH_CLIENT_ID"] = os.environ.get("SLACK_OAUTH_CLIENT_ID")
 app.config["SLACK_OAUTH_CLIENT_SECRET"] = os.environ.get("SLACK_OAUTH_CLIENT_SECRET")
@@ -27,6 +29,10 @@ slack = slack_bp.session
 
 @app.route("/")
 def index():
+    logging.info("flask.session = %s", flask.session)
+    logging.info("slack_bp.token = %s", slack_bp.token)
+    logging.info("slack.token = %s", slack.token)
+    logging.info("slack.authorized = %s", slack.authorized)
     if not slack.authorized:
         return redirect(url_for("slack.login"))
     resp = slack.post("chat.postMessage", data={
