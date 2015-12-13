@@ -49,11 +49,10 @@ slack_bp.from_config["client_id"] = "SLACK_OAUTH_CLIENT_ID"
 slack_bp.from_config["client_secret"] = "SLACK_OAUTH_CLIENT_SECRET"
 app.register_blueprint(slack_bp, url_prefix="/login")
 
-slack = slack_bp.session
-
 
 @app.route("/")
 def index():
+    slack = slack_bp.session
     if not slack.authorized:
         return redirect(url_for("slack.login"))
     resp = slack.post("chat.postMessage", data={
