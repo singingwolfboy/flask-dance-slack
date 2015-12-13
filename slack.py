@@ -41,7 +41,7 @@ def index():
         "token": slack_bp.token["access_token"],
         "channel": "#general",
         "text": "ping",
-        "emoji_icon": ":frog:",
+        "icon_emoji": ":robot_face:",
     })
     assert resp.ok, resp.text
     return resp.text
