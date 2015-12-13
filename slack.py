@@ -10,7 +10,7 @@ from raven.contrib.flask import Sentry
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 sentry = Sentry(app)
-logging.setLevel(loggin.INFO)
+logging.setLevel(logging.INFO)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "supersekrit")
 app.config["SLACK_OAUTH_CLIENT_ID"] = os.environ.get("SLACK_OAUTH_CLIENT_ID")
 app.config["SLACK_OAUTH_CLIENT_SECRET"] = os.environ.get("SLACK_OAUTH_CLIENT_SECRET")
