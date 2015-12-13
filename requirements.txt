@@ -1,4 +1,5 @@
-flask-dance
+# flask-dance
+git+https://github.com/singingwolfboy/flask-dance.git@debug-logging#egg=Flask-Dance
 gunicorn
 raven
 blinker

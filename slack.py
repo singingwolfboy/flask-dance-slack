@@ -1,5 +1,6 @@
 import os
 import sys
+import logging
 from werkzeug.contrib.fixers import ProxyFix
 from flask import Flask, redirect, url_for
 from flask_dance.consumer import OAuth2ConsumerBlueprint
@@ -24,6 +25,10 @@ slack_bp.from_config["session.client_secret"] = "SLACK_OAUTH_CLIENT_SECRET"
 app.register_blueprint(slack_bp, url_prefix="/login")
 
 slack = slack_bp.session
+
+# turn up flask-dance logging output
+flask_dance_logger = logging.getLogger('flask_dance.consumer.oauth2')
+flask_dance_logger.setLevel(logging.DEBUG)
 
 @app.route("/")
 def index():
