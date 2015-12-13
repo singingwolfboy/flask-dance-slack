@@ -44,7 +44,7 @@ def index():
         "emoji_icon": ":frog:",
     })
     assert resp.ok, resp.text
-    return "I said ping!"
+    return resp.text
 
 if __name__ == "__main__":
     app.run()
