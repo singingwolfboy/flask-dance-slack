@@ -38,7 +38,7 @@ def index():
     if not slack.authorized:
         return redirect(url_for("slack.login"))
     resp = slack.post("chat.postMessage", data={
-        "token": slack_bp.token,
+        "token": slack_bp.token["access_token"],
         "channel": "#general",
         "text": "ping",
         "emoji_icon": ":frog:",
