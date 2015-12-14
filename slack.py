@@ -2,11 +2,13 @@ import os
 import sys
 import logging
 from werkzeug.contrib.fixers import ProxyFix
+from werkzeug.urls import url_encode, url_decode
 import flask
 from flask import Flask, redirect, url_for
 from flask_dance.consumer import OAuth2ConsumerBlueprint
 from raven.contrib.flask import Sentry
 from requests.auth import AuthBase
+from urlobject import URLObject
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
@@ -33,8 +35,18 @@ class SlackOAuth(AuthBase):
             access_token = self.blueprint.token.get("access_token")
         else:
             access_token = None
-        if access_token:
-            r.data.setdefault('token', access_token)
+        if not access_token:
+            return r
+
+        if r.method == "GET":
+            url = URLObject(r.url)
+            if not "token" in url.query_dict:
+                url = url.add_query_param("token", access_token)
+            r.url = url
+        elif r.method == "POST":
+            args = url_decode(r.body)
+            args.setdefault("token", access_token)
+            r.body = url_encode(args)
         return r
 
 
