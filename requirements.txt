@@ -1,4 +1,4 @@
-flask-dance>=0.8.0
+flask-dance>=0.8.1
 git+https://github.com/requests/requests-oauthlib.git@master#egg=requests_oauthlib
 gunicorn
 raven
