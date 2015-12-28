@@ -3,3 +3,4 @@ git+https://github.com/requests/requests-oauthlib.git@master#egg=requests_oauthl
 gunicorn
 raven
 blinker
+flask-sslify
