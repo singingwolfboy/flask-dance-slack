@@ -1,5 +1,4 @@
-# flask-dance
-git+https://github.com/singingwolfboy/flask-dance.git@master#egg=Flask-Dance
+flask-dance>=0.8.0
 git+https://github.com/requests/requests-oauthlib.git@master#egg=requests_oauthlib
 gunicorn
 raven
