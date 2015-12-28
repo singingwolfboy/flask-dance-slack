@@ -18,6 +18,10 @@
     "SLACK_OAUTH_CLIENT_SECRET": {
       "description": "The OAuth client secret for your application, assigned by Slack",
       "value": "client-secret-goes-here"
+    },
+    "OAUTHLIB_RELAX_TOKEN_SCOPE": {
+      "description": "Indicates that it's OK for Slack to return different OAuth scopes. Don't change this!",
+      "value": "true"
     }
   }
 }
