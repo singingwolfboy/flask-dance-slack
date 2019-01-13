@@ -1,6 +1,2 @@
-flask-dance>=0.8.1
-git+https://github.com/requests/requests-oauthlib.git@master#egg=requests_oauthlib
+flask-dance
 gunicorn
-raven
-blinker
-flask-sslify
