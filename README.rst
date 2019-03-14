@@ -117,7 +117,7 @@ Step 4: Run your app and connect to Slack team!
 -----------------------------------------------
 If you're setting environment variables manually, run your app using Python::
 
-    python slack.py
+    FLASK_APP=slack.py flask run
 
 If you're using a ``.env`` file for your environment variables, install `foreman`_
 and use that to run your app::
