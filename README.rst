@@ -33,7 +33,8 @@ top, and create a new application. You can fill in most of the fields however
 you want, but the "Redirect URI(s)" field is special. To fill it out, you'll
 need that app name from Heroku. The correct redirect URI is
 ``https://APPNAME.herokuapp.com/login/slack/authorized``. For example,
-if Heroku assigned you an app name of ``peaceful-lake``, your redirct URI must be
+if Heroku assigned you an app name of ``peaceful-lake``, your
+redirct URI must be
 ``https://peaceful-lake.herokuapp.com/login/slack/authorized``. Once you've
 filled in all of the fields, click "Create Application".
 Slack will give you a client ID and client secret,
@@ -46,7 +47,8 @@ your Heroku dashboard, or by clicking on the "Manage App" button after the
 deploy step is finished.) On that page, there should be a section called
 "Config Variables" where you can manage the config vars for your application.
 You'll need click the "Reveal Config Vars" button to see which variables
-are available, and then the "Edit" button to allow you to change these variables.
+are available, and then the "Edit" button to allow you to change
+these variables.
 
 Take the client ID you got from Slack, and paste it into the "VALUE" field
 next to the ``SLACK_OAUTH_CLIENT_ID`` field, replacing the dummy value that
@@ -97,8 +99,10 @@ Many applications use `environment variables`_ for configuration, and
 Flask-Dance is no exception. You'll need to set the following environment
 variables:
 
+* ``FLASK_APP``: set this to ``slack.py``
 * ``SLACK_OAUTH_CLIENT_ID``: set this to the client ID you got from Slack.
-* ``SLACK_OAUTH_CLIENT_SECRET``: set this to the client secret you got from Slack.
+* ``SLACK_OAUTH_CLIENT_SECRET``: set this to the client secret you got
+  from Slack.
 * ``OAUTHLIB_RELAX_TOKEN_SCOPE``: set this to ``true``. This indicates that
   it's OK for Slack to return different OAuth scopes than requested; Slack
   does that sometimes.
@@ -107,25 +111,26 @@ variables:
   OAuth. You should only do this for local testing.
   Do **not** set this in production! [`oauthlib docs`_]
 
-How you set these variables depends on your operating system. For Mac/Linux, you
-can use the `export`_ command. For Windows, you can use the `SET`_ command. If
-you don't want to worry about this, you can create a ``.env`` file with
-your environment variables, and use `foreman`_ to run your app. This repository
-has a ``.env.example`` file that you can copy.
+The easiest way to set these environment variables is to define them in
+an ``.env`` file. You can then install the `python-dotenv`_ package
+to make Flask automatically read this file when you run the dev server.
+This repository has a ``.env.example`` file that you can copy to
+``.env`` to get a head start
 
 Step 4: Run your app and connect to Slack team!
 -----------------------------------------------
-If you're setting environment variables manually, run your app using Python::
+Run your app using the ``flask`` command::
 
-    FLASK_APP=slack.py flask run
+    flask run
 
-If you're using a ``.env`` file for your environment variables, install `foreman`_
-and use that to run your app::
+Then, go to http://localhost:5000/ to visit your app and connect it to your Slack team!
 
-    foreman start
+If you get an error message that says "Could not locate a Flask application",
+then you need to install the `python-dotenv`_ package using ``pip``::
 
-Then, go to http://localhost:5000/ to visit your app and connect it to your
-Slack team!
+    pip install python-dotenv
+
+Once the package is installed, try the ``flask run`` command again!
 
 Learn more!
 ```````````
@@ -141,9 +146,7 @@ and don't forget to be awesome!
 .. _Heroku: https://www.heroku.com/
 .. _environment variables: https://en.wikipedia.org/wiki/Environment_variable
 .. _oauthlib docs: http://oauthlib.readthedocs.org/en/latest/oauth2/security.html#envvar-OAUTHLIB_INSECURE_TRANSPORT
-.. _export: http://ss64.com/bash/export.html
-.. _SET: http://ss64.com/nt/set.html
-.. _foreman: https://github.com/ddollar/foreman
+.. _python-dotenv: https://github.com/theskumar/python-doten
 .. _virtual environment: https://docs.python.org/3.7/library/venv.html
 .. _Fork this GitHub repo: https://help.github.com/articles/fork-a-repo/
 
